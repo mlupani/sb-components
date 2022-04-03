@@ -1,16 +1,37 @@
 {
-  "name": "my-storybook",
+  "name": "ml-components-my-storybook",
   "private": true,
   "version": "0.0.0",
+  "license": "MIT",
+  "typings": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "homepage": "https://mlupani.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlupani/sb-components"
+  },
+  "peerDependencies": {
+    "react": ">= 16",
+    "react-dom": "^16.8.6",
+    "typescript": ">= 4.0.2"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "files": [
+      "dist",
+      "src"
+    ]
+  },
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",
     "start": "start-storybook -p 6006",
-    "build": "build-storybook"
-  },
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "build": "yarn clean && tsc && yarn copy-files",
+    "chromatic": "npx chromatic --project-token=1ce66198d01b",
+    "clean": "rimraf dist/",
+    "copy-files": "copyfiles -u 1 src/**/*.css dist/"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
@@ -25,7 +46,17 @@
     "@vitejs/plugin-react": "^1.0.7",
     "babel-loader": "^8.2.4",
     "chromatic": "^6.5.3",
-    "typescript": "^4.5.4",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^19.0.2",
     "vite": "^2.9.0"
-  }
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+]
 }

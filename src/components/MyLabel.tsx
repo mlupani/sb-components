@@ -24,7 +24,7 @@ export interface MyLabelProps {
     customFontColor?: string
 }
 
-const MyLabel = ({label='No Label', size='normal', allCaps = true, color='primary', customFontColor = ''}: MyLabelProps) => {
+export const MyLabel = ({label='No Label', size='normal', allCaps = true, color='primary', customFontColor = ''}: MyLabelProps) => {
   return (
     <span style={{color: customFontColor}} className={`label ${size} ${!customFontColor ? 'text-'+color : ''} `}>
         {
